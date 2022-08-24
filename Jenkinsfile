@@ -9,9 +9,9 @@ pipeline {
                 }
             }
             steps {
-                sh 'docker rmi ruoyi:latest'
-                echo 'rm image successfully'
                 sh 'mvn -B -DskipTests clean package dockerfile:build'
+                sh 'docker images  | grep none | awk '{print $3}' | xargs docker rmi'
+                echo 'rm image successfully'
             }
         }
         stage('docker run'){
