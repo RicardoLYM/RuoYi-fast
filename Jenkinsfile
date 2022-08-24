@@ -10,7 +10,7 @@ pipeline {
             }
             steps {
                 sh 'mvn -B -DskipTests clean package dockerfile:build'
-                sh 'docker images  | grep none | awk '{print $3}' | xargs docker rmi'
+                sh 'docker images  | grep none | awk \'{print $3}\' | xargs docker rmi'
                 echo 'rm image successfully'
             }
         }
